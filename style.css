@@ -1,0 +1,86 @@
+#parent-div{
+    margin: 0;
+    position: absolute;
+    top: 600px;
+    transform: all 10s;
+}
+
+#parent-div > img{
+    margin: 0;
+    padding: 0;
+}
+
+#boat {
+    opacity: 0;
+    width: 230px;
+    height: 30px;
+}
+
+#inv-div{
+    position: absolute;
+    left: 283px;
+    opacity: 0.5;
+    height: 185px;
+    width: 191px;
+}
+
+#inv-div > div {
+    height: 35px;
+    width: 35px;
+    border-radius: 3px;
+}
+
+#slot-1 {
+    position: absolute;
+    left: 16px;
+    top:5px;
+}
+
+#slot-2 {
+    position: absolute;
+    left: 58px;
+    top:5px;
+}
+
+#slot-3 {
+    position: absolute;
+    left: 100px;
+    top:5px;
+}
+
+#slot-4 {
+    position: absolute;
+    left: 142px;
+    top:5px;
+}
+
+#slot-5 {
+    position: absolute;
+    left: 16px;
+    top: 48px;
+}
+
+#inv-div> #slot-6 {
+    position: absolute;
+    left: 29px;
+    top: 133px;
+    width: 61px;
+    height: 15px;
+    text-align: center;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    font-variant: small-caps;
+    color: black;
+    font-weight: bolder;
+}
+
+#inv-div> #slot-6:hover {
+background: yellow;
+opacity: 0.5;
+}
+
+.white {
+    background-color: white; 
+    opacity: 0.5;
+}
+
