@@ -62,7 +62,7 @@
             var progressBox = this.add.graphics();
             progressBox.fillStyle(0x222222, 0.8);
             progressBox.fillRect(240, 270, 320, 50);
-            
+
             var width = this.cameras.main.width;
             var height = this.cameras.main.height;
             var loadingText = this.make.text({
@@ -75,7 +75,7 @@
                 }
             });
             loadingText.setOrigin(0.5, 0.5);
-            
+
             var percentText = this.make.text({
                 x: width / 2,
                 y: height / 2 - 5,
@@ -86,7 +86,7 @@
                 }
             });
             percentText.setOrigin(0.5, 0.5);
-            
+
             var assetText = this.make.text({
                 x: width / 2,
                 y: height / 2 + 50,
@@ -97,14 +97,14 @@
                 }
             });
             assetText.setOrigin(0.5, 0.5);
-            
+
             this.load.on('progress', function (value) {
                 percentText.setText(parseInt(value * 100) + '%');
                 progressBar.clear();
                 progressBar.fillStyle(0xffffff, 1);
                 progressBar.fillRect(250, 280, 300 * value, 30);
             });
-            
+
             this.load.on('fileprogress', function (file) {
                 assetText.setText('Loading asset: ' + file.key);
             });
@@ -116,13 +116,22 @@
                 percentText.destroy();
                 assetText.destroy();
             });
-            
+
             this.load.image('logo', 'rock.png');
             for (var i = 0; i < 500; i++) {
-                this.load.image('logo'+i, 'zenvalogo.png');
+                this.load.image('logo' + i, 'zenvalogo.png');
             }
 
             //////
+            this.load.image("background", "assets/background.png");
+            this.load.image("stars", "assets/stars.png");
+            this.load.image("stars2", "assets/stars2.png");
+            this.load.image("clouds", "assets/clouds.png");
+            this.load.image("clouds2", "assets/clouds2.png");
+            this.load.image("layer3", "assets/layer3.png");
+            this.load.image("layer4", "assets/layer4.png");
+            this.load.image("mountains", "assets/mountains.png");
+            this.load.image("mountains", "assets/mountains.png");
             this.load.image('ground', 'assets/ground_2.png');
             this.load.image('plant', 'assets/plant.png');
             this.load.image('sea', 'assets/water.png');
@@ -144,7 +153,7 @@
             this.load.image('smallwood', 'assets/smallwood.png');
             this.load.image('pipe', 'assets/pipe.png');
             this.load.image('wallDoor', 'assets/64x64_wall.png');
-           // this.load.image('Cavern', 'assets/canverns.png');
+            // this.load.image('Cavern', 'assets/canverns.png');
             this.load.image('inventory', 'assets/inventory.png');
             this.load.image('sky', 'assets/sky.png');
 
@@ -172,10 +181,23 @@
 
 
         function create() {
-          
-            this.add.image(400, 300, 'sky');
 
-          //  this.add.image(400, 290, 'Cavern').setScale(1.0);
+            this.add.image(400, 300, 'sky');
+            this.add.image(400, 290, "background").setScale(1.0);
+            this.add.image(450, 380, "mountains").setScale(0.5);
+            // this.add.image(400, 300, "layer4").setScale(0.5);
+            this.add.image(400, 400, "layer3").setScale(0.5);
+            this.add.image(400, 220, "clouds").setScale(0.5);
+            this.add.image(410, 270, "clouds").setScale(0.2);
+            this.add.image(850, 250, "clouds").setScale(0.5);
+            this.add.image(400, 250, "stars").setScale(0.4);
+            this.add.image(200, 150, "stars").setScale(0.4);
+            this.add.image(80, 500, "stars").setScale(0.4);
+            this.add.image(380, 390, "stars2").setScale(0.3);
+            this.add.image(500, 300, "stars2").setScale(0.3);
+            this.add.image(500, 300, "stars2").setScale(0.3);
+
+            //  this.add.image(400, 290, 'Cavern').setScale(1.0);
             //  A simple background for our game
 
             //  The platforms group contains the ground and the 2 ledges we can jump on
@@ -517,7 +539,6 @@
 
             slot6.addEventListener("mouseenter", (e) => {
                 if (inv.visible) {
-
                     slot6.style.background = 'yellow';
                     slot6.style.opacity = '0.5';
                 }
