@@ -94,6 +94,8 @@
         var inventory = [];
         var inv;
         var endText;
+        var rock3;
+        var rock4;
         var rock1;
         var plant;
         var i = 1;
@@ -116,17 +118,15 @@
             axe = this.physics.add.staticGroup();
             vine = this.physics.add.staticGroup();
             rock = this.physics.add.group();
-            smallwood = this.physics.add.staticGroup();
+            smallwood = this.physics.add.group();
             wood = this.physics.add.sprite(60, 480, 'wood').setScale(0.5);
-            // waterFlow = this.physics.add.staticGroup();
             waterfall = this.physics.add.staticGroup();
             door = this.physics.add.staticGroup();
             openDoor = this.physics.add.staticGroup();
             tree = this.physics.add.staticGroup();
             pipe = this.physics.add.staticGroup();
             wallDoor = this.physics.add.staticGroup();
-            //bomb = this.physics.add.sprite(300, 450, 'bomb');
-            // star = this.physics.add.sprite(500, 450, 'star');
+
 
 
 
@@ -140,12 +140,12 @@
             platforms.create(590, 583, 'ground').refreshBody();
             platforms.create(680, 583, 'ground').refreshBody();
             platforms.create(770, 583, 'ground').refreshBody();
-            hiddenFloor.create(382, 198, 'tinyWood').visible = false;
+            hiddenFloor1 = hiddenFloor.create(382, 198, 'tinyWood');
+            hiddenFloor1.visible = false;
 
 
             // the box
             // box.create(250, 510, 'box').setScale(2);
-            // axe.create(250, 510, 'axe');
 
             //  Now let's create some ledges
             wall.create(0, 360, 'wall');
@@ -171,19 +171,16 @@
 
             //The wood
             wood.angle = 30;
-            // wood2.angle = 90;
             wood.setBounce(0.2);
             wood.setCollideWorldBounds(true);
 
-            //The waterFlow
-            // waterFlow.create(770, 40, 'waterFlow');
 
             //The small wood
             plant.create(10, 543, 'plant').setScale(1.5);
             plant.create(700, 543, 'plant').setScale(1.5);
             plant.create(20, 550, 'plant').setScale();
             plant.create(30, 550, 'plant').setScale();
-            smallwood.create(30, 565, 'smallwood').setScale(2);
+            smallwood2 = smallwood.create(30, 560, 'smallwood').setScale(2);
             firewood.create(30, 555, 'firewood').setScale();
 
             door.create(770, 58, 'door');
@@ -195,14 +192,8 @@
             plant.create(780, 543, 'plant').setScale(1.5);
             plant.create(790, 552, 'plant').setScale();
 
-            // waterfall.create(30, 510, 'waterfall').setScale(0.3);
 
-            //The pipe
-            // pipe.create(0, 498, 'pipe').setScale(0.109);
-            // The player and its settings   // 300, 450,
-            // The player and its settings
-            //  Player physics properties. Give the little guy a slight bounce.
-            // water = sea.create(400, 1000, 'sea').refreshBody();
+
             water = this.physics.add.sprite(400, 850, 'sea');
 
             inv = this.add.image(380, 70, 'inventory').setScale(2);
@@ -212,8 +203,6 @@
             player.setCollideWorldBounds(true);
             water.setCollideWorldBounds(true);
             water.allowGravity = false;
-            //star.setCollideWorldBounds(true);
-            // bomb.setCollideWorldBounds(true);
             wood2 = this.physics.add.sprite(200, water.y, 'wood2').setScale(0.5);
             wood2.setBounce(0.2);
             wood2.setCollideWorldBounds(true);
@@ -266,31 +255,26 @@
             this.physics.add.collider(platforms, wood);
             this.physics.add.collider(platforms, wood2);
             this.physics.add.collider(platforms, rock);
+            this.physics.add.collider(platforms, smallwood);
             this.physics.add.collider(hiddenFloor, rock);
+            this.physics.add.collider(hiddenFloor, smallwood);
             this.physics.add.collider(wood2, rock);
             this.physics.add.collider(wall, wood);
-            // this.physics.add.collider(wall, wood2);
-            // this.physics.add.collider(sea, wood2);
             this.physics.add.collider(water, wood2);
             this.physics.add.collider(player, platforms);
             this.physics.add.collider(player, hiddenFloor);
             this.physics.add.collider(player, wall);
             this.physics.add.overlap(player, water);
-            // this.physics.add.collider(player, box);
             this.physics.add.collider(player, wallDoor);
             this.physics.add.collider(openDoor, wallDoor);
-            // this.physics.add.collider(player, wood);
             this.physics.add.collider(platforms, rock);
 
             this.physics.add.collider(player, wood2);
 
-            //  this.physics.add.collider(star, platforms);
-            //  this.physics.add.collider(bomb, platforms);
 
             /////
             cursors = this.input.keyboard.createCursorKeys();
             this.physics.add.overlap(player, rock, collectItem, null, this);
-            // this.physics.add.overlap(player, axe, collectItem, null, this);
             this.physics.add.overlap(player, vine, collectItem, null, this);
             this.physics.add.overlap(player, wood);
             this.physics.add.overlap(player, smallwood, collectItem, null, this);
@@ -327,7 +311,6 @@
                 if (this.physics.overlap(player, wood) && slot5.classList.contains('white') && wood.angle < 90) {
                     wood.angle += 10;
                     if (wood.angle === 60) {
-                        // this.physics.add.collider(player, wood);
                         wood.disableBody(true, true);
                         wood2.enableBody(true, 100, 480, true, true);
                         this.physics.add.collider(player, wood2);
@@ -336,11 +319,6 @@
                     }
                 }
             });
-            // function woodFunction(player, wood) {
-            //     if (inventory.includes(box) && this.p.isDown && wood.angle < 100) {
-            //         wood.angle += 30;
-            //     }
-            // }
 
             this.input.keyboard.on('keydown_' + 'A', (event) => {
                 if (inv.visible) {
@@ -353,38 +331,42 @@
                     slot3.classList.remove('white');
                     slot4.classList.remove('white');
                     slot5.classList.remove('white');
-                    hiddenFloor.disableBody(true, true);
+                    hiddenFloor1.disableBody(true, true);
 
                 } else {
                     inv.visible = true;
                     for (let item of inventory) {
                         item.visible = true;
                     }
-                    hiddenFloor.enableBody(true, 382, 198, true);
+                    hiddenFloor1.enableBody(true, 382, 198, true);
 
 
 
                 }
             });
-            // rock.disableBody(true, true);
-            // console.log(rock.children.entries[0].visible);
-            this.input.keyboard.on('keydown_' + 'B', (event) => {
-                if (inventory.includes(rock3)) {
 
+            this.input.keyboard.on('keydown_' + 'B', (event) => {
+                if (inventory.includes(rock3) && slot3.classList.contains('white')) {
                     rock1.enableBody(true, player.x, player.y, true, true);
                     let index = inventory.indexOf(rock3);
                     inventory[index].visible = false;
                     inventory.splice(index, 1);
-                } else if (inventory.includes(rock4)) {
+                    slot3.classList.remove('white');
+
+                } else if (inventory.includes(rock4) && slot4.classList.contains('white')) {
                     rock2.enableBody(true, player.x, player.y, true, true);
                     let index = inventory.indexOf(rock4);
                     inventory[index].visible = false;
                     inventory.splice(index, 1);
+                    slot4.classList.remove('white');
+
+                } else if (inventory.includes(smallwood) && slot1.classList.contains('white')) {
+                    smallwood2.enableBody(true, player.x, player.y + 10, true, true);
+                    let index = inventory.indexOf(smallwood);
+                    inventory[index].visible = false;
+                    inventory.splice(index, 1);
+                    slot1.classList.remove('white');
                 }
-
-
-
-
             });
 
 
@@ -414,22 +396,25 @@
                         slot5.classList.toggle('white');
                     }
                 } else if (e.target.id === "slot-6") {
-                    if (slot1.classList.contains('white') && slot2.classList.contains('white') && slot3.classList.contains('white')) {
-                        console.log("hey");
+                    if (slot1.classList.contains('white') && slot2.classList.contains('white') && (slot3.classList.contains('white') || slot4.classList.contains('white'))) {
                         axe = this.add.image(314, 65, 'axe').setScale(0.5);
                         addItem(axe);
-                        slot1.classList.remove('white');
-                        slot2.classList.remove('white');
-                        slot3.classList.remove('white');
+
                         let index = inventory.indexOf(vine);
                         inventory[index].visible = false;
                         inventory.splice(index, 1);
-                        let index2 = inventory.indexOf(rock3);
+                        let rockNumber = ((slot3.classList.contains('white')) ? rock3 : rock4);
+                        let index2 = inventory.indexOf(rockNumber);
+                        console.log(rockNumber);
                         inventory[index2].visible = false;
                         inventory.splice(index2, 1);
                         let index3 = inventory.indexOf(smallwood);
                         inventory[index3].visible = false;
                         inventory.splice(index3, 1);
+                        slot1.classList.remove('white');
+                        slot2.classList.remove('white');
+                        slot3.classList.remove('white');
+                        slot4.classList.remove('white');
                     }
                 }
             });
