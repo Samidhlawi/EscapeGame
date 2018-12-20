@@ -81,3 +81,9 @@
     opacity: 0.5;
 }
 
+.homeHeader{
+    color:rgb(247, 212, 98);margin: 0px 260px; padding-top: 200px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-variant: small-caps;
+    text-shadow: 4px 2px 2px rgb(0, 80, 0);
+}
