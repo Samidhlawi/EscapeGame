@@ -38,7 +38,7 @@ npm install phaser
 
 - Atheer
 
-- Sami
+- Sami Aldhlawi
 ---
 ## Acknowledgments
 - Jack
